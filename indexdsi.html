@@ -1,0 +1,2207 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Perfiles de Puestos en TI — Desarrollo de Sistemas de Información | Audrey Melody Bartra Cautin</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/newsreader@5.0.18/index.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/newsreader@5.0.18/400-italic.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/plus-jakarta-sans@5.0.18/400.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/plus-jakarta-sans@5.0.18/500.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/plus-jakarta-sans@5.0.18/600.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/plus-jakarta-sans@5.0.18/700.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/ibm-plex-mono@5.0.18/index.css">
+  <style>
+    :root {
+      /* Paleta Editorial Cálida (Mantenida del diseño, suavizada y orgánica) */
+      --bg-canvas: #E8E3DA;
+      --bg-paper: #F5F2EB;
+      --bg-elevated: #FCFBF8;
+      --bg-stone: #ECE8DF;
+      --bg-sand: #E2DDD2;
+      --ink-black: #181715;
+      --ink-charcoal: #262421;
+      --ink-body: #33302B;
+      --ink-muted: #68635A;
+      --accent-terracotta: #8F2D19;
+      --accent-terracotta-soft: #F3E5E1;
+      --accent-forest: #1E382B;
+      --accent-forest-soft: #E3ECE7;
+      --accent-ochre: #7C5416;
+      --accent-ochre-soft: #F4EFE2;
+      --rule-heavy: #2C2A26;
+      --rule-medium: #B8B1A4;
+      --rule-light: #D6D0C4;
+
+      /* Tipografía */
+      --font-serif: 'Newsreader', Georgia, serif;
+      --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: 'IBM Plex Mono', monospace;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background-color: var(--bg-canvas);
+    }
+
+    body {
+      background-color: var(--bg-canvas);
+      color: var(--ink-body);
+      font-family: var(--font-sans);
+      font-size: 14.5px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ==========================================================================
+       BARRA DE NAVEGACIÓN SUPERIOR (STICKY)
+       ========================================================================== */
+    .top-utility-bar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background-color: var(--ink-black);
+      color: var(--bg-paper);
+      border-bottom: 1px solid #383530;
+      padding: 0 32px;
+      height: 54px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .brand-coordinates {
+      font-size: 12.5px;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      color: #C7C1B6;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background-color: var(--accent-terracotta);
+      display: inline-block;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: #D8D3C8;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 500;
+      padding: 6px 13px;
+      border-radius: 4px;
+      transition: background-color 0.18s ease, color 0.18s ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links a:focus,
+    .nav-links a.active {
+      color: #FFFFFF;
+      background-color: #2A2824;
+    }
+
+    .btn-print {
+      background-color: var(--accent-terracotta);
+      color: #FFFFFF;
+      border: 1px solid #A33720;
+      border-radius: 4px;
+      padding: 7px 14px;
+      font-family: var(--font-sans);
+      font-size: 12.5px;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: background-color 0.18s ease;
+    }
+
+    .btn-print:hover {
+      background-color: #742211;
+    }
+
+    .icon-svg {
+      width: 15px;
+      height: 15px;
+      stroke: currentColor;
+      stroke-width: 1.75;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      fill: none;
+      flex-shrink: 0;
+    }
+
+    /* ==========================================================================
+       CONTENEDOR EDITORIAL PRINCIPAL
+       ========================================================================== */
+    .editorial-shell {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 32px 28px 64px;
+    }
+
+    /* ENCABEZADO PRINCIPAL (<header>) — MASTHEAD EDITORIAL */
+    header.main-header {
+      background-color: var(--bg-paper);
+      border: 1px solid var(--rule-heavy);
+      margin-bottom: 40px;
+      box-shadow: 0 4px 18px rgba(24, 23, 21, 0.05);
+    }
+
+    .masthead-top-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border-bottom: 1px solid var(--rule-heavy);
+      font-size: 12px;
+      background-color: var(--bg-stone);
+    }
+
+    .masthead-top-strip > div {
+      padding: 9px 18px;
+      border-right: 1px solid var(--rule-medium);
+      color: var(--ink-charcoal);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .masthead-top-strip > div:last-child {
+      border-right: none;
+    }
+
+    .masthead-top-strip span.muted {
+      color: var(--ink-muted);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .masthead-main-grid {
+      display: grid;
+      grid-template-columns: 7.4fr 4.6fr;
+    }
+
+    .masthead-title-column {
+      padding: 42px 46px;
+      border-right: 1px solid var(--rule-heavy);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 22px;
+    }
+
+    .editorial-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent-terracotta);
+    }
+
+    .editorial-kicker::before {
+      content: "";
+      display: inline-block;
+      width: 22px;
+      height: 2px;
+      background-color: var(--accent-terracotta);
+    }
+
+    header.main-header h1 {
+      font-family: var(--font-serif);
+      font-size: clamp(30px, 3.3vw, 43px);
+      font-weight: 500;
+      color: var(--ink-black);
+      line-height: 1.12;
+      letter-spacing: -0.01em;
+    }
+
+    header.main-header h1 em {
+      font-style: italic;
+      font-weight: 400;
+      color: var(--accent-terracotta);
+    }
+
+    .masthead-lead {
+      font-size: 15px;
+      color: var(--ink-body);
+      max-width: 65ch;
+      line-height: 1.65;
+    }
+
+    /* Columna Derecha de Autoría en Header */
+    .masthead-author-column {
+      background-color: var(--ink-black);
+      color: var(--bg-paper);
+      padding: 36px 34px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .author-emblem-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      border-bottom: 1px solid #35322D;
+      padding-bottom: 18px;
+      margin-bottom: 22px;
+    }
+
+    .author-tag-label {
+      font-size: 11.5px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #B5AFA4;
+    }
+
+    .geometric-seal {
+      width: 40px;
+      height: 40px;
+      stroke: var(--accent-terracotta);
+      stroke-width: 1.4;
+      fill: none;
+    }
+
+    .author-primary-name {
+      font-family: var(--font-sans);
+      font-size: 19.5px;
+      font-weight: 700;
+      color: #FFFFFF;
+      letter-spacing: 0.01em;
+      line-height: 1.3;
+      margin-bottom: 16px;
+    }
+
+    .author-career-box {
+      border-top: 1px solid #35322D;
+      border-bottom: 1px solid #35322D;
+      padding: 14px 0;
+      margin-bottom: 18px;
+    }
+
+    .author-career-box .career-caption {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #A8A196;
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .author-career-box .career-title {
+      font-family: var(--font-serif);
+      font-size: 19px;
+      font-style: italic;
+      color: #F5F2EB;
+    }
+
+    .author-specs-mini {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      font-size: 12px;
+      color: #C7C1B6;
+    }
+
+    /* ==========================================================================
+       ENCABEZADOS DE SECCIÓN CON NUMERACIÓN EDITORIAL (01, 02, 03)
+       ========================================================================== */
+    .section-block {
+      margin-bottom: 52px;
+      scroll-margin-top: 72px;
+    }
+
+    .section-banner {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      border: 1px solid var(--rule-heavy);
+      background-color: var(--bg-paper);
+      margin-bottom: 24px;
+    }
+
+    .section-numeral {
+      background-color: var(--ink-black);
+      color: var(--bg-paper);
+      font-family: var(--font-serif);
+      font-size: 38px;
+      font-style: italic;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-right: 1px solid var(--rule-heavy);
+      padding: 16px;
+    }
+
+    .section-title-wrap {
+      padding: 20px 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .section-overline {
+      font-size: 11.5px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent-terracotta);
+      margin-bottom: 4px;
+      font-weight: 700;
+    }
+
+    .section-title-wrap h2 {
+      font-family: var(--font-sans);
+      font-size: 20.5px;
+      font-weight: 700;
+      color: var(--ink-black);
+      letter-spacing: -0.005em;
+      line-height: 1.3;
+    }
+
+    .section-title-wrap p {
+      font-size: 14px;
+      color: var(--ink-muted);
+      margin-top: 4px;
+    }
+
+    /* ==========================================================================
+       SECCIÓN 1: DOSSIER DE TRES PERFILES (TARJETAS + TABLA COMPARATIVA)
+       ========================================================================== */
+    .profiles-dossier-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-bottom: 24px;
+    }
+
+    .dossier-card {
+      background-color: var(--bg-elevated);
+      border: 1px solid var(--rule-heavy);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .dossier-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(24, 23, 21, 0.08);
+    }
+
+    .dossier-card-top {
+      padding: 18px 22px 15px;
+      border-bottom: 1px solid var(--rule-light);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: var(--bg-paper);
+    }
+
+    .dossier-index {
+      font-size: 11.5px;
+      font-weight: 600;
+      padding: 4px 10px;
+      background-color: var(--ink-black);
+      color: var(--bg-paper);
+      letter-spacing: 0.03em;
+    }
+
+    .dossier-card:nth-child(2) .dossier-index {
+      background-color: var(--accent-terracotta);
+    }
+
+    .dossier-card:nth-child(3) .dossier-index {
+      background-color: var(--accent-forest);
+    }
+
+    .dossier-vector {
+      width: 34px;
+      height: 34px;
+      stroke: var(--ink-charcoal);
+      stroke-width: 1.4;
+      fill: none;
+    }
+
+    .dossier-card-body {
+      padding: 22px;
+      flex-grow: 1;
+    }
+
+    .dossier-card-body h3 {
+      font-family: var(--font-serif);
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--ink-black);
+      line-height: 1.22;
+      margin-bottom: 10px;
+    }
+
+    .dossier-card-body p {
+      font-size: 13.8px;
+      color: var(--ink-body);
+      line-height: 1.6;
+    }
+
+    .dossier-card-footer {
+      border-top: 1px solid var(--rule-medium);
+      background-color: var(--bg-stone);
+      padding: 11px 22px;
+      font-size: 12px;
+      color: var(--ink-charcoal);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .dossier-card-footer a {
+      color: var(--accent-terracotta);
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .dossier-card-footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* Tablas Editoriales */
+    .table-scroll {
+      width: 100%;
+      overflow-x: auto;
+    }
+
+    table.editorial-table {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: var(--bg-elevated);
+      border: 1px solid var(--rule-heavy);
+      font-size: 13.5px;
+    }
+
+    table.editorial-table th {
+      background-color: var(--ink-black);
+      color: var(--bg-paper);
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      text-align: left;
+      padding: 11px 15px;
+      border: 1px solid #383530;
+    }
+
+    table.editorial-table td {
+      padding: 11px 15px;
+      border: 1px solid var(--rule-medium);
+      vertical-align: top;
+      color: var(--ink-body);
+    }
+
+    table.editorial-table tbody tr:nth-child(even) td {
+      background-color: var(--bg-paper);
+    }
+
+    .num-cell {
+      font-family: var(--font-mono);
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--accent-terracotta);
+    }
+
+    .text-center {
+      text-align: center !important;
+    }
+
+    /* ==========================================================================
+       SECCIÓN 2: FORMATO MPP — ANALISTA DE SISTEMAS
+       ========================================================================== */
+    .mpp-dossier-frame {
+      background-color: var(--bg-paper);
+      border: 1px solid var(--rule-heavy);
+      padding: 28px;
+      box-shadow: 0 4px 18px rgba(24, 23, 21, 0.05);
+    }
+
+    .mpp-ledger-head {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 20px;
+      border: 1px solid var(--rule-heavy);
+      background-color: var(--bg-elevated);
+      padding: 16px 22px;
+      margin-bottom: 24px;
+      align-items: center;
+    }
+
+    .mpp-ledger-head h3 {
+      font-size: 15.5px;
+      font-weight: 700;
+      color: var(--ink-black);
+    }
+
+    .mpp-ledger-head p {
+      font-size: 13px;
+      color: var(--ink-muted);
+      margin-top: 2px;
+    }
+
+    .mpp-stamp {
+      font-size: 12px;
+      border: 1px solid var(--accent-terracotta);
+      background-color: var(--accent-terracotta-soft);
+      color: var(--accent-terracotta);
+      padding: 6px 12px;
+      font-weight: 600;
+      text-align: right;
+    }
+
+    .mpp-section-bar {
+      background-color: var(--ink-black);
+      color: var(--bg-paper);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      padding: 9px 16px;
+      border: 1px solid var(--rule-heavy);
+      border-bottom: none;
+      margin-top: 22px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .mpp-section-bar:first-of-type {
+      margin-top: 0;
+    }
+
+    .mpp-section-bar span.bar-note {
+      font-size: 11.5px;
+      color: #B5AFA4;
+      font-weight: 500;
+      text-transform: none;
+      letter-spacing: 0;
+    }
+
+    .mpp-sub-strip {
+      background-color: var(--bg-sand);
+      color: var(--ink-black);
+      font-size: 12.5px;
+      font-weight: 700;
+      padding: 8px 14px;
+      border: 1px solid var(--rule-heavy);
+      border-bottom: none;
+    }
+
+    table.mpp-table {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: var(--bg-elevated);
+      border: 1px solid var(--rule-heavy);
+      font-size: 13.5px;
+    }
+
+    table.mpp-table th,
+    table.mpp-table td {
+      border: 1px solid var(--rule-medium);
+      padding: 9px 13px;
+      vertical-align: middle;
+    }
+
+    table.mpp-table th {
+      background-color: var(--ink-charcoal);
+      color: var(--bg-paper);
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    table.mpp-table td.key-col {
+      background-color: var(--bg-stone);
+      font-weight: 600;
+      color: var(--ink-black);
+      width: 28%;
+    }
+
+    table.mpp-table td.val-col {
+      background-color: var(--bg-elevated);
+      color: var(--ink-body);
+    }
+
+    .mission-callout {
+      border: 1px solid var(--rule-heavy);
+      background-color: var(--bg-elevated);
+      padding: 18px 22px;
+      font-family: var(--font-serif);
+      font-size: 17px;
+      font-style: italic;
+      color: var(--ink-black);
+      line-height: 1.55;
+    }
+
+    .chk-option {
+      display: inline-flex;
+      align-items: center;
+      margin-right: 14px;
+      font-size: 13px;
+      color: var(--ink-muted);
+      white-space: nowrap;
+    }
+
+    .chk-selected {
+      color: var(--accent-terracotta);
+      font-weight: 700;
+      background-color: var(--accent-terracotta-soft);
+      padding: 1px 7px;
+      border: 1px solid #D9B0A7;
+    }
+
+    .mark-x-cell {
+      font-family: var(--font-mono);
+      font-weight: 700;
+      font-size: 13.5px;
+      color: var(--accent-terracotta);
+      background-color: var(--accent-terracotta-soft) !important;
+      text-align: center !important;
+    }
+
+    .split-tables-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      border: 1px solid var(--rule-heavy);
+      padding: 14px;
+      background-color: var(--bg-elevated);
+    }
+
+    .comp-matrix-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border: 1px solid var(--rule-heavy);
+      background-color: var(--bg-elevated);
+    }
+
+    .comp-matrix-col {
+      border-right: 1px solid var(--rule-heavy);
+    }
+
+    .comp-matrix-col:last-child {
+      border-right: none;
+    }
+
+    table.comp-subtable {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13.5px;
+    }
+
+    table.comp-subtable th {
+      background-color: var(--bg-sand);
+      color: var(--ink-black);
+      font-size: 12px;
+      font-weight: 700;
+      text-align: left;
+      padding: 8px 12px;
+      border-top: 1px solid var(--rule-heavy);
+      border-bottom: 1px solid var(--rule-heavy);
+    }
+
+    table.comp-subtable tr:first-child th {
+      border-top: none;
+    }
+
+    table.comp-subtable td {
+      padding: 7px 12px;
+      border-bottom: 1px solid var(--rule-light);
+    }
+
+    table.comp-subtable td.x-col {
+      width: 54px;
+      text-align: center;
+      border-left: 1px solid var(--rule-medium);
+      font-family: var(--font-mono);
+      font-weight: 700;
+    }
+
+    /* ==========================================================================
+       SECCIÓN 3: FORMATOS INNOVADORES (FICHA ÁGIL Y MATRIZ DBA)
+       ========================================================================== */
+    .profile-innovation-card {
+      border: 1px solid var(--rule-heavy);
+      background-color: var(--bg-paper);
+      margin-bottom: 36px;
+      box-shadow: 0 4px 18px rgba(24, 23, 21, 0.05);
+      scroll-margin-top: 72px;
+    }
+
+    .profile-innovation-card:last-child {
+      margin-bottom: 0;
+    }
+
+    .innovation-header-fullstack {
+      background-color: var(--ink-black);
+      color: var(--bg-paper);
+      padding: 22px 28px;
+      border-bottom: 1px solid var(--rule-heavy);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .innovation-header-fullstack .role-badge {
+      font-size: 11.5px;
+      font-weight: 600;
+      background-color: var(--accent-terracotta);
+      color: #FFFFFF;
+      padding: 4px 10px;
+      display: inline-block;
+      margin-bottom: 4px;
+    }
+
+    .innovation-header-fullstack h3 {
+      font-family: var(--font-serif);
+      font-size: 25px;
+      font-weight: 500;
+      color: #FFFFFF;
+    }
+
+    .bento-canvas-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      background-color: var(--rule-medium);
+      gap: 1px;
+    }
+
+    .bento-cell {
+      background-color: var(--bg-elevated);
+      padding: 22px 24px;
+    }
+
+    .bento-cell.cell-tinted {
+      background-color: var(--bg-paper);
+    }
+
+    .b-col-7 { grid-column: span 7; }
+    .b-col-5 { grid-column: span 5; }
+    .b-col-6 { grid-column: span 6; }
+
+    .bento-label {
+      font-size: 12.5px;
+      font-weight: 700;
+      color: var(--accent-terracotta);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--rule-light);
+    }
+
+    .tech-stack-cluster {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .stack-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 6px 11px;
+      background-color: var(--bg-paper);
+      border: 1px solid var(--rule-medium);
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--ink-black);
+    }
+
+    .stack-chip svg {
+      width: 14px;
+      height: 14px;
+      stroke: var(--accent-terracotta);
+      stroke-width: 1.8;
+      fill: none;
+    }
+
+    .editorial-list {
+      list-style: none;
+      font-size: 13.8px;
+    }
+
+    .editorial-list li {
+      position: relative;
+      padding-left: 18px;
+      margin-bottom: 9px;
+      color: var(--ink-body);
+    }
+
+    .editorial-list li::before {
+      content: "–";
+      position: absolute;
+      left: 0;
+      color: var(--accent-terracotta);
+      font-weight: 700;
+    }
+
+    .kpi-cards-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .kpi-card {
+      border: 1px solid var(--rule-medium);
+      background-color: var(--bg-paper);
+      padding: 12px 14px;
+    }
+
+    .kpi-card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 6px;
+    }
+
+    .kpi-value {
+      font-family: var(--font-serif);
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--ink-black);
+    }
+
+    .kpi-tag {
+      font-size: 11px;
+      color: var(--accent-terracotta);
+      font-weight: 700;
+    }
+
+    .kpi-meter {
+      height: 4px;
+      background-color: var(--rule-light);
+      margin-bottom: 8px;
+      overflow: hidden;
+    }
+
+    .kpi-meter-fill {
+      height: 100%;
+      background-color: var(--accent-terracotta);
+    }
+
+    .kpi-caption {
+      font-size: 12.2px;
+      color: var(--ink-muted);
+      line-height: 1.45;
+    }
+
+    /* Cabecera Perfil 3: Administrador de Bases de Datos - DBA */
+    .innovation-header-dba {
+      background-color: var(--accent-forest);
+      color: var(--bg-paper);
+      padding: 22px 28px;
+      border-bottom: 1px solid var(--rule-heavy);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .innovation-header-dba .role-badge {
+      font-size: 11.5px;
+      font-weight: 600;
+      background-color: var(--ink-black);
+      color: #F5F2EB;
+      padding: 4px 10px;
+      display: inline-block;
+      margin-bottom: 4px;
+    }
+
+    .innovation-header-dba h3 {
+      font-family: var(--font-serif);
+      font-size: 25px;
+      font-weight: 500;
+      color: #FFFFFF;
+    }
+
+    .dba-content-pad {
+      padding: 24px;
+    }
+
+    .dba-overview-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      margin-bottom: 22px;
+    }
+
+    .dba-panel {
+      border: 1px solid var(--rule-medium);
+      background-color: var(--bg-elevated);
+      padding: 18px 20px;
+    }
+
+    .dba-panel h4 {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--accent-forest);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .crit-badge {
+      display: inline-block;
+      font-size: 11.5px;
+      font-weight: 700;
+      padding: 3px 9px;
+    }
+
+    .crit-1 {
+      background-color: var(--accent-terracotta-soft);
+      color: var(--accent-terracotta);
+      border: 1px solid var(--accent-terracotta);
+    }
+
+    .crit-2 {
+      background-color: var(--accent-ochre-soft);
+      color: var(--accent-ochre);
+      border: 1px solid var(--accent-ochre);
+    }
+
+    .crit-3 {
+      background-color: var(--accent-forest-soft);
+      color: var(--accent-forest);
+      border: 1px solid var(--accent-forest);
+    }
+
+    /* ==========================================================================
+       PIE DE PÁGINA (<footer>)
+       ========================================================================== */
+    footer.main-footer {
+      background-color: var(--ink-black);
+      color: var(--bg-paper);
+      border: 1px solid var(--rule-heavy);
+      padding: 30px 36px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 24px;
+      align-items: center;
+    }
+
+    .footer-colophon-author .f-label {
+      font-size: 11.5px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #A8A196;
+      margin-bottom: 4px;
+    }
+
+    .footer-colophon-author .f-author {
+      font-size: 17.5px;
+      font-weight: 700;
+      color: #FFFFFF;
+    }
+
+    .footer-colophon-author .f-career {
+      font-family: var(--font-serif);
+      font-size: 16px;
+      font-style: italic;
+      color: #D8D3C8;
+      margin-top: 2px;
+    }
+
+    .footer-colophon-meta {
+      text-align: right;
+      font-size: 12.5px;
+      color: #A8A196;
+      line-height: 1.65;
+    }
+
+    /* ==========================================================================
+       RESPONSIVIDAD
+       ========================================================================== */
+    @media (max-width: 960px) {
+      .masthead-top-strip {
+        grid-template-columns: 1fr 1fr;
+      }
+      .masthead-main-grid,
+      .profiles-dossier-grid,
+      .split-tables-wrap,
+      .comp-matrix-wrap,
+      .dba-overview-grid,
+      .kpi-cards-grid,
+      footer.main-footer {
+        grid-template-columns: 1fr;
+      }
+      .masthead-title-column {
+        border-right: none;
+        border-bottom: 1px solid var(--rule-heavy);
+        padding: 28px 24px;
+      }
+      .section-banner {
+        grid-template-columns: 76px 1fr;
+      }
+      .b-col-7,
+      .b-col-5,
+      .b-col-6 {
+        grid-column: span 12;
+      }
+      .comp-matrix-col {
+        border-right: none;
+        border-bottom: 1px solid var(--rule-heavy);
+      }
+      .top-utility-bar {
+        height: auto;
+        padding: 12px 20px;
+        flex-wrap: wrap;
+      }
+      .brand-coordinates {
+        display: none;
+      }
+      .footer-colophon-meta {
+        text-align: left;
+      }
+    }
+
+    /* ==========================================================================
+       IMPRESIÓN (PDF / A4)
+       ========================================================================== */
+    @media print {
+      body {
+        background: #FFFFFF !important;
+        font-size: 11.5px;
+      }
+      .top-utility-bar {
+        display: none !important;
+      }
+      .editorial-shell {
+        padding: 0;
+        max-width: 100%;
+      }
+      header.main-header,
+      .mpp-dossier-frame,
+      .profile-innovation-card,
+      .dossier-card {
+        box-shadow: none !important;
+      }
+      .masthead-author-column,
+      .section-numeral,
+      .mpp-section-bar,
+      table.editorial-table th,
+      table.mpp-table th,
+      .innovation-header-fullstack,
+      .innovation-header-dba,
+      footer.main-footer {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- BARRA DE NAVEGACIÓN SUPERIOR -->
+  <nav class="top-utility-bar" aria-label="Navegación del documento">
+    <div class="brand-coordinates">
+      <span class="brand-dot"></span>
+      <span>Gestión de Recursos Humanos y Tecnologías de la Información</span>
+    </div>
+    <ul class="nav-links" id="sidebarNav">
+      <li><a href="#seccion-1" class="active">01. Perfiles de la Carrera</a></li>
+      <li><a href="#seccion-2">02. Ficha MPP (Analista)</a></li>
+      <li><a href="#seccion-3">03. Full Stack y DBA</a></li>
+    </ul>
+    <button type="button" class="btn-print" id="btnPrintDoc">
+      <svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true">
+        <polyline points="6 9 6 2 18 2 18 9"></polyline>
+        <path d="M6 18H4v-7h16v7h-2"></path>
+        <rect x="6" y="14" width="12" height="8"></rect>
+      </svg>
+      <span>Imprimir / Guardar PDF</span>
+    </button>
+  </nav>
+
+  <div class="editorial-shell">
+
+    <!-- ENCABEZADO PRINCIPAL (<header>) -->
+    <header class="main-header">
+      <div class="masthead-top-strip">
+        <div><span class="muted">Área</span> <strong>Recursos Humanos y TI</strong></div>
+        <div><span class="muted">Referencia</span> <strong>Modelo Oficial MPP</strong></div>
+        <div><span class="muted">Contenido</span> <strong>3 Perfiles Profesionales</strong></div>
+        <div><span class="muted">Publicación</span> <strong>Trabajo Académico 2026</strong></div>
+      </div>
+
+      <div class="masthead-main-grid">
+        <div class="masthead-title-column">
+          <div class="editorial-kicker">Compendio de Gestión de Talento Humano y Sistemas</div>
+          <h1>Manual y Especificación de <em>Perfiles de Puestos</em> en Tecnologías de la Información</h1>
+          <p class="masthead-lead">
+            Estudio descriptivo y diseño técnico de cargos para profesionales de la carrera de <strong>Desarrollo de Sistemas de Información</strong>, articulando el formato reglamentario del Manual de Perfil de Puestos (MPP) con estructuras ágiles de ingeniería de software y administración de bases de datos.
+          </p>
+        </div>
+
+        <div class="masthead-author-column" role="region" aria-label="Autoría del documento">
+          <div>
+            <div class="author-emblem-row">
+              <div>
+                <div class="author-tag-label">Datos de Autoría</div>
+                <div class="author-tag-label" style="color: #E06D53; margin-top: 3px;">Presentación Académica</div>
+              </div>
+              <svg class="geometric-seal" viewBox="0 0 48 48" aria-hidden="true">
+                <rect x="6" y="6" width="36" height="36"></rect>
+                <circle cx="24" cy="24" r="12"></circle>
+                <line x1="6" y1="24" x2="42" y2="24"></line>
+                <line x1="24" y1="6" x2="24" y2="42"></line>
+              </svg>
+            </div>
+            <div class="author-primary-name">Autor: AUDREY MELODY BARTRA CAUTIN</div>
+            <div class="author-career-box">
+              <span class="career-caption">Carrera Profesional</span>
+              <span class="career-title">Desarrollo de Sistemas de Información</span>
+            </div>
+          </div>
+
+          <div class="author-specs-mini">
+            <div>
+              <span style="color: #8C857B; display: block; font-size: 11px;">ALCANCE</span>
+              <span>3 Perfiles Desarrollados</span>
+            </div>
+            <div>
+              <span style="color: #8C857B; display: block; font-size: 11px;">ESTÁNDAR</span>
+              <span>Formato Oficial MPP</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main>
+
+      <!-- ======================================================================
+           SECCIÓN 1: RECONOCIMIENTO DE TRES (03) PERFILES DE LA CARRERA
+           ====================================================================== -->
+      <section id="seccion-1" class="section-block">
+        <div class="section-banner">
+          <div class="section-numeral">01</div>
+          <div class="section-title-wrap">
+            <div class="section-overline">Sección Primera · Especialidades de la Carrera</div>
+            <h2>Reconocimiento de Tres (03) Perfiles de la Carrera de Desarrollo de Sistemas de Información</h2>
+            <p>Identificación de los tres roles troncales que intervienen en el análisis, construcción de software y administración de bases de datos.</p>
+          </div>
+        </div>
+
+        <!-- Tarjetas de Reconocimiento -->
+        <div class="profiles-dossier-grid">
+          <!-- Perfil 1 -->
+          <article class="dossier-card">
+            <div>
+              <div class="dossier-card-top">
+                <span class="dossier-index">Perfil 01 · Análisis y Diseño</span>
+                <svg class="dossier-vector" viewBox="0 0 40 40" aria-hidden="true">
+                  <rect x="4" y="4" width="12" height="12"></rect>
+                  <rect x="24" y="4" width="12" height="12"></rect>
+                  <rect x="14" y="24" width="12" height="12"></rect>
+                  <line x1="16" y1="10" x2="24" y2="10"></line>
+                  <line x1="20" y1="10" x2="20" y2="24"></line>
+                </svg>
+              </div>
+              <div class="dossier-card-body">
+                <h3>1. Analista de Sistemas</h3>
+                <p>
+                  Especialista responsable de relevar los procesos organizacionales y traducirlos en especificaciones funcionales, modelos UML, diagramas Entidad-Relación, arquitectura de software y planes de control de calidad (QA).
+                </p>
+              </div>
+            </div>
+            <div class="dossier-card-footer">
+              <span>Enfoque: Requerimientos y Diseño</span>
+              <a href="#seccion-2">Ver ficha MPP →</a>
+            </div>
+          </article>
+
+          <!-- Perfil 2 -->
+          <article class="dossier-card">
+            <div>
+              <div class="dossier-card-top">
+                <span class="dossier-index">Perfil 02 · Ingeniería de Software</span>
+                <svg class="dossier-vector" viewBox="0 0 40 40" aria-hidden="true">
+                  <polygon points="20 4 36 12 20 20 4 12 20 4"></polygon>
+                  <polyline points="4 20 20 28 36 20"></polyline>
+                  <polyline points="4 28 20 36 36 28"></polyline>
+                </svg>
+              </div>
+              <div class="dossier-card-body">
+                <h3>2. Desarrollador de Software Full Stack / Backend</h3>
+                <p>
+                  Profesional a cargo de la programación del código fuente en capas de servidor y cliente, desarrollo de servicios web (APIs RESTful), lógica de negocio e integración continua mediante control de versiones.
+                </p>
+              </div>
+            </div>
+            <div class="dossier-card-footer">
+              <span>Enfoque: Construcción y Despliegue</span>
+              <a href="#perfil-fullstack">Ver ficha ágil →</a>
+            </div>
+          </article>
+
+          <!-- Perfil 3 -->
+          <article class="dossier-card">
+            <div>
+              <div class="dossier-card-top">
+                <span class="dossier-index">Perfil 03 · Infraestructura de Datos</span>
+                <svg class="dossier-vector" viewBox="0 0 40 40" aria-hidden="true">
+                  <ellipse cx="20" cy="10" rx="14" ry="5"></ellipse>
+                  <path d="M6 10v20c0 2.76 6.27 5 14 5s14-2.24 14-5V10"></path>
+                  <path d="M6 20c0 2.76 6.27 5 14 5s14-2.24 14-5"></path>
+                </svg>
+              </div>
+              <div class="dossier-card-body">
+                <h3>3. Administrador de Bases de Datos (DBA)</h3>
+                <p>
+                  Custodio de los repositorios de datos de la organización. Garantiza la disponibilidad continua, seguridad de accesos, políticas de copias de respaldo (backups), afinamiento de consultas SQL y migración de datos.
+                </p>
+              </div>
+            </div>
+            <div class="dossier-card-footer">
+              <span>Enfoque: Seguridad y Rendimiento SQL</span>
+              <a href="#perfil-dba">Ver matriz →</a>
+            </div>
+          </article>
+        </div>
+
+        <!-- Cuadro Resumen Comparativo -->
+        <div class="table-scroll">
+          <table class="editorial-table">
+            <thead>
+              <tr>
+                <th style="width: 6%;" class="text-center">N°</th>
+                <th style="width: 25%;">Perfil Profesional Reconocido</th>
+                <th style="width: 30%;">Alcance Funcional en el Ciclo de Vida (SDLC)</th>
+                <th style="width: 22%;">Tecnologías y Metodologías</th>
+                <th style="width: 17%;">Formato Desarrollado</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="text-center num-cell">01</td>
+                <td><strong>Analista de Sistemas</strong></td>
+                <td>Levantamiento de requerimientos, modelamiento lógico de sistemas y datos, y validación de calidad funcional.</td>
+                <td>UML, DER, SQL Server, PostgreSQL, Scrum, PMBOK.</td>
+                <td>Formato Oficial MPP</td>
+              </tr>
+              <tr>
+                <td class="text-center num-cell">02</td>
+                <td><strong>Desarrollador de Software Full Stack / Backend</strong></td>
+                <td>Programación multicapa (Backend y Frontend), creación de APIs RESTful, acceso a datos y pruebas unitarias.</td>
+                <td>Java, C#, HTML/CSS/JS, SQL, Git.</td>
+                <td>Ficha Ágil Tecnológica</td>
+              </tr>
+              <tr>
+                <td class="text-center num-cell">03</td>
+                <td><strong>Administrador de Bases de Datos (DBA)</strong></td>
+                <td>Seguridad de datos, respaldos automatizados, recuperación ante desastres, optimización SQL y procesos ETL.</td>
+                <td>SQL Server, PostgreSQL, MySQL, Oracle, T-SQL.</td>
+                <td>Matriz por Criticidad</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ======================================================================
+           SECCIÓN 2: PERFIL DE PUESTO DE "ANALISTA DE SISTEMAS" (MODELO MPP)
+           ====================================================================== -->
+      <section id="seccion-2" class="section-block">
+        <div class="section-banner">
+          <div class="section-numeral">02</div>
+          <div class="section-title-wrap">
+            <div class="section-overline">Sección Segunda · Formato Normativo</div>
+            <h2>Perfil de Puesto: "Analista de Sistemas" (Modelo Oficial del Manual de Perfil de Puestos - MPP)</h2>
+            <p>Desarrollo completo del cargo conforme a los 8 apartados del Manual de Perfil de Puestos, con casillas de verificación (☑ / ☐) y marcaciones con "X".</p>
+          </div>
+        </div>
+
+        <div class="mpp-dossier-frame">
+          <div class="mpp-ledger-head">
+            <div>
+              <h3>Manual de Perfil de Puestos (MPP) — Ficha Técnica del Puesto</h3>
+              <p>Estructura formal de identificación, misión, funciones, coordinaciones, requisitos y competencias.</p>
+            </div>
+            <div class="mpp-stamp">
+              Nivel Organizacional 3<br>
+              Puesto: Analista de Sistemas
+            </div>
+          </div>
+
+          <!-- 1. IDENTIFICACIÓN DEL PUESTO -->
+          <div class="mpp-section-bar">
+            <span>1. IDENTIFICACIÓN DEL PUESTO</span>
+            <span class="bar-note">Apartado 1 de 8</span>
+          </div>
+          <div class="table-scroll">
+            <table class="mpp-table">
+              <tbody>
+                <tr>
+                  <td class="key-col">Unidad orgánica:</td>
+                  <td class="val-col" colspan="3">Departamento de Sistemas y Tecnologías de Información</td>
+                </tr>
+                <tr>
+                  <td class="key-col">Nivel Organizacional:</td>
+                  <td class="val-col" style="width: 22%;">Nivel Organizacional 3</td>
+                  <td class="key-col" style="width: 25%;">Nombre del puesto:</td>
+                  <td class="val-col" style="width: 25%;"><strong>Analista de Sistemas</strong></td>
+                </tr>
+                <tr>
+                  <td class="key-col">Dependencia Jerárquica Lineal:</td>
+                  <td class="val-col" colspan="3">Gerencia de Administración y Finanzas</td>
+                </tr>
+                <tr>
+                  <td class="key-col">Dependencia Jerárquica Funcional:</td>
+                  <td class="val-col" colspan="3">Jefe del Departamento de Sistemas y Tecnologías de Información</td>
+                </tr>
+                <tr>
+                  <td class="key-col">Puestos que supervisa:</td>
+                  <td class="val-col" colspan="3">Asistente de Informática / Practicantes de Sistemas</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- 2. MISIÓN DEL PUESTO -->
+          <div class="mpp-section-bar">
+            <span>2. MISIÓN DEL PUESTO</span>
+            <span class="bar-note">Apartado 2 de 8</span>
+          </div>
+          <div class="mission-callout">
+            "Analizar, diseñar, modelar y validar los requerimientos funcionales y técnicos de los sistemas de información y bases de datos institucionales, asegurando la optimización de los procesos operativos y administrativos, la calidad del software y el alineamiento con los objetivos estratégicos de la entidad."
+          </div>
+
+          <!-- 3. FUNCIONES DEL PUESTO -->
+          <div class="mpp-section-bar">
+            <span>3. FUNCIONES DEL PUESTO</span>
+            <span class="bar-note">Apartado 3 de 8</span>
+          </div>
+          <div class="table-scroll">
+            <table class="mpp-table">
+              <thead>
+                <tr>
+                  <th class="text-center" style="width: 7%;">N°</th>
+                  <th style="width: 93%;">FUNCIONES</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="text-center num-cell">1</td>
+                  <td>Realizar el levantamiento, análisis y validación de requerimientos funcionales y no funcionales con las unidades orgánicas usuarias para el desarrollo o mejora de los sistemas de información institucionales.</td>
+                </tr>
+                <tr>
+                  <td class="text-center num-cell">2</td>
+                  <td>Efectuar el modelamiento de procesos de negocio y sistemas utilizando el Lenguaje Unificado de Modelado (UML) y diagramas Entidad-Relación (DER) para estructurar soluciones informáticas escalables.</td>
+                </tr>
+                <tr>
+                  <td class="text-center num-cell">3</td>
+                  <td>Diseñar la arquitectura de software de las aplicaciones institucionales, definiendo componentes lógicos, capas de aplicación, estándares técnicos y patrones de diseño.</td>
+                </tr>
+                <tr>
+                  <td class="text-center num-cell">4</td>
+                  <td>Elaborar las especificaciones detalladas de casos de uso, historias de usuario, prototipos de interfaz (wireframes) y matrices de trazabilidad de requerimientos.</td>
+                </tr>
+                <tr>
+                  <td class="text-center num-cell">5</td>
+                  <td>Diseñar, normalizar y optimizar estructuras de bases de datos relacionales (SQL), definiendo tablas, vistas, índices, procedimientos almacenados y reglas de integridad referencial.</td>
+                </tr>
+                <tr>
+                  <td class="text-center num-cell">6</td>
+                  <td>Planificar y ejecutar pruebas de aseguramiento de calidad del software (QA), verificando el cumplimiento de casos de prueba funcionales, de integración y de aceptación del usuario.</td>
+                </tr>
+                <tr>
+                  <td class="text-center num-cell">7</td>
+                  <td>Elaborar y mantener actualizada la documentación técnica y funcional de los sistemas (manuales de arquitectura, diccionarios de datos, guías de instalación y manuales de usuario).</td>
+                </tr>
+                <tr>
+                  <td class="text-center num-cell">8</td>
+                  <td>Brindar capacitación técnica y funcional a los usuarios finales y al personal de soporte durante el despliegue y puesta en producción de nuevos módulos o sistemas.</td>
+                </tr>
+                <tr>
+                  <td class="text-center num-cell">9</td>
+                  <td>Diseñar y especificar mecanismos de integración de sistemas mediante servicios web (APIs REST / SOAP) para garantizar la interoperabilidad entre plataformas internas y externas.</td>
+                </tr>
+                <tr>
+                  <td class="text-center num-cell">10</td>
+                  <td>Evaluar el desempeño operativo y la seguridad aplicativa de los sistemas en producción, proponiendo mejoras evolutivas y mantenimientos correctivos.</td>
+                </tr>
+                <tr>
+                  <td class="text-center num-cell">11</td>
+                  <td>Apoyar en lo que le compete respecto a la implementación y evaluación del Plan Estratégico Institucional.</td>
+                </tr>
+                <tr>
+                  <td class="text-center num-cell">12</td>
+                  <td>Otras funciones inherentes al cargo, dispuestas por el Jefe superior inmediato.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- 4. COORDINACIONES PRINCIPALES -->
+          <div class="mpp-section-bar">
+            <span>4. COORDINACIONES PRINCIPALES</span>
+            <span class="bar-note">Apartado 4 de 8</span>
+          </div>
+          <div class="table-scroll">
+            <table class="mpp-table">
+              <tbody>
+                <tr>
+                  <td class="key-col">Coordinaciones Internas:</td>
+                  <td class="val-col">Jefe del Departamento de Sistemas y Tecnologías de Información y todas las Unidades Orgánicas usuarias.</td>
+                </tr>
+                <tr>
+                  <td class="key-col">Coordinaciones Externas:</td>
+                  <td class="val-col">Proveedores de servicios tecnológicos, entidades públicas y privadas vinculadas a interoperabilidad.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- 5. REQUISITOS DEL PUESTO - FORMACIÓN ACADÉMICA -->
+          <div class="mpp-section-bar">
+            <span>5. REQUISITOS DEL PUESTO</span>
+            <span class="bar-note">Apartado 5 de 8</span>
+          </div>
+          <div class="mpp-sub-strip">5.1 Formación Académica</div>
+          <div class="table-scroll">
+            <table class="mpp-table">
+              <thead>
+                <tr>
+                  <th style="width: 24%;">Nivel Educativo</th>
+                  <th style="width: 26%;">Grado / Situación</th>
+                  <th style="width: 50%;">Condición Académica Requerida para el Puesto</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Secundaria</strong></td>
+                  <td>
+                    <span class="chk-option">☐ Incompleta</span>
+                    <span class="chk-option">☐ Completa</span>
+                  </td>
+                  <td>No aplica.</td>
+                </tr>
+                <tr>
+                  <td><strong>Técnica Básica (1 o 2 años)</strong></td>
+                  <td>
+                    <span class="chk-option">☐ Incompleta</span>
+                    <span class="chk-option">☐ Completa</span>
+                  </td>
+                  <td>
+                    <span class="chk-option">☐ Egresado</span>
+                    <span class="chk-option">☐ Titulado</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td><strong>Técnica Superior (3 o 4 años)</strong></td>
+                  <td>
+                    <span class="chk-option">☐ Incompleta</span>
+                    <span class="chk-option chk-selected">☑ Completa</span>
+                  </td>
+                  <td>
+                    <span class="chk-option">☐ Egresado</span>
+                    <span class="chk-option chk-selected">☑ Titulado</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td><strong>Universitario</strong></td>
+                  <td>
+                    <span class="chk-option">☐ Incompleta</span>
+                    <span class="chk-option chk-selected">☑ Completa</span>
+                  </td>
+                  <td>
+                    <span class="chk-option">☐ Egresado</span>
+                    <span class="chk-option">☐ Bachiller</span>
+                    <span class="chk-option chk-selected">☑ Título / Lic.</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="key-col">Carreras requeridas:</td>
+                  <td class="val-col" colspan="2">
+                    <strong>Desarrollo de Sistemas de Información, Computación e Informática, Ingeniería de Sistemas o afines.</strong>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="key-col">Maestría / Doctorado:</td>
+                  <td class="val-col" colspan="2">
+                    <span class="chk-option chk-selected">☐ No requerido</span>
+                    <span class="chk-option">☐ Egresado (Maestría)</span>
+                    <span class="chk-option">☐ Grado de Maestro</span>
+                    <span class="chk-option">☐ Egresado (Doctorado)</span>
+                    <span class="chk-option">☐ Grado de Doctor</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="key-col">Se requiere Colegiatura:</td>
+                  <td class="val-col">
+                    <span class="chk-option">☐ Sí</span>
+                    <span class="chk-option chk-selected">☑ No</span>
+                    <span style="font-size: 12px; color: var(--ink-muted);">(o según aplique al nivel técnico/universitario)</span>
+                  </td>
+                  <td>
+                    <strong>Se requiere Habilitación:</strong>&nbsp;&nbsp;
+                    <span class="chk-option">☐ Sí</span>
+                    <span class="chk-option chk-selected">☑ No</span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- 6. REQUISITOS DE CONOCIMIENTO -->
+          <div class="mpp-section-bar">
+            <span>6. REQUISITOS DE CONOCIMIENTO</span>
+            <span class="bar-note">Apartado 6 de 8</span>
+          </div>
+          <div class="table-scroll">
+            <table class="mpp-table">
+              <tbody>
+                <tr>
+                  <td class="key-col">
+                    a. Conocimientos técnicos principales requeridos para el puesto:<br>
+                    <span style="font-weight: 400; font-size: 12px; color: var(--ink-muted);">(No requiere documentación sustentatoria)</span>
+                  </td>
+                  <td class="val-col">
+                    Análisis y diseño de sistemas con UML, modelamiento de bases de datos relacionales (SQL Server, MySQL, PostgreSQL), programación orientada a objetos (Java, C#, Python), metodologías ágiles (Scrum) y control de versiones (Git).
+                  </td>
+                </tr>
+                <tr>
+                  <td class="key-col">
+                    b. Programas de especialización requeridos y sustentados con documentos:<br>
+                    <span style="font-weight: 400; font-size: 12px; color: var(--ink-muted);">(Nota: cursos no menos de 24 horas y diplomados no menos de 90 horas)</span>
+                  </td>
+                  <td class="val-col">
+                    Especialización en Ingeniería de Software, Gestión de Proyectos TI (PMBOK / Scrum), Arquitectura de Sistemas o Gestión de Bases de Datos.
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="mpp-sub-strip">c. Conocimientos de Ofimática e Idiomas</div>
+          <div class="split-tables-wrap">
+            <!-- Tabla Ofimática -->
+            <div class="table-scroll">
+              <table class="mpp-table">
+                <thead>
+                  <tr>
+                    <th style="width: 40%;">Ofimática</th>
+                    <th class="text-center" style="width: 15%;">No Aplica</th>
+                    <th class="text-center" style="width: 15%;">Básico</th>
+                    <th class="text-center" style="width: 15%;">Intermedio</th>
+                    <th class="text-center" style="width: 15%;">Avanzado</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Procesador de textos (Word)</strong></td>
+                    <td class="text-center"></td>
+                    <td class="text-center"></td>
+                    <td class="text-center"></td>
+                    <td class="mark-x-cell">X</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Hojas de cálculo (Excel)</strong></td>
+                    <td class="text-center"></td>
+                    <td class="text-center"></td>
+                    <td class="text-center"></td>
+                    <td class="mark-x-cell">X</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Presentaciones (PowerPoint)</strong></td>
+                    <td class="text-center"></td>
+                    <td class="text-center"></td>
+                    <td class="text-center"></td>
+                    <td class="mark-x-cell">X</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Tabla Idiomas -->
+            <div class="table-scroll">
+              <table class="mpp-table">
+                <thead>
+                  <tr>
+                    <th style="width: 40%;">Idiomas / Dialectos</th>
+                    <th class="text-center" style="width: 15%;">No Aplica</th>
+                    <th class="text-center" style="width: 15%;">Básico</th>
+                    <th class="text-center" style="width: 15%;">Intermedio</th>
+                    <th class="text-center" style="width: 15%;">Avanzado</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Inglés</strong></td>
+                    <td class="text-center"></td>
+                    <td class="text-center"></td>
+                    <td class="mark-x-cell">X</td>
+                    <td class="text-center"></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Quechua</strong></td>
+                    <td class="text-center"></td>
+                    <td class="mark-x-cell">X</td>
+                    <td class="text-center"></td>
+                    <td class="text-center"></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- 7. EXPERIENCIA -->
+          <div class="mpp-section-bar">
+            <span>7. EXPERIENCIA</span>
+            <span class="bar-note">Apartado 7 de 8</span>
+          </div>
+          <div class="table-scroll">
+            <table class="mpp-table">
+              <tbody>
+                <tr>
+                  <td class="key-col">Experiencia general:</td>
+                  <td class="val-col"><strong>3 años</strong> (en el sector público o privado).</td>
+                </tr>
+                <tr>
+                  <td class="key-col">
+                    Experiencia específica:<br>
+                    d. Nivel mínimo de puesto requerido:
+                  </td>
+                  <td class="val-col">
+                    <span class="chk-option">☐ Practicante Profesional</span>
+                    <span class="chk-option">☐ Auxiliar / Asistente</span>
+                    <span class="chk-option chk-selected">☑ Analista / Especialista</span>
+                    <span class="chk-option">☐ Supervisor / Coordinador</span>
+                    <span class="chk-option">☐ Jefe de Área o Dpto.</span>
+                    <span class="chk-option">☐ Gerencia o Director</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="key-col">e. Tiempo de experiencia específica requerida:</td>
+                  <td class="val-col"><strong>2 años</strong>.</td>
+                </tr>
+                <tr>
+                  <td class="key-col">f. Experiencia en el Sector Público:</td>
+                  <td class="val-col">
+                    <span class="chk-option chk-selected">☑ Sí, el puesto requiere contar con experiencia en el sector público (1 año)</span>
+                    <span class="chk-option">☐ No requiere</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="key-col">Aspectos complementarios:</td>
+                  <td class="val-col">
+                    Experiencia participando en el ciclo completo de desarrollo de software (SDLC) e implementación de sistemas web o corporativos.
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- 8. HABILIDADES O COMPETENCIAS -->
+          <div class="mpp-section-bar">
+            <span>8. HABILIDADES O COMPETENCIAS</span>
+            <span class="bar-note">Apartado 8 de 8</span>
+          </div>
+          <div class="comp-matrix-wrap">
+            <!-- Columna 1 -->
+            <div class="comp-matrix-col">
+              <table class="comp-subtable">
+                <thead>
+                  <tr>
+                    <th>Dimensión Organizativa - Institucional</th>
+                    <th class="text-center" style="width: 54px;">Marca</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Compromiso</td>
+                    <td class="x-col mark-x-cell">X</td>
+                  </tr>
+                  <tr>
+                    <td>Esmero</td>
+                    <td class="x-col"></td>
+                  </tr>
+                  <tr>
+                    <td>Orden</td>
+                    <td class="x-col mark-x-cell">X</td>
+                  </tr>
+                </tbody>
+                <thead>
+                  <tr>
+                    <th>Dimensión Autorregulación</th>
+                    <th class="text-center">Marca</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Trabajo bajo presión</td>
+                    <td class="x-col mark-x-cell">X</td>
+                  </tr>
+                  <tr>
+                    <td>Flexibilidad</td>
+                    <td class="x-col mark-x-cell">X</td>
+                  </tr>
+                  <tr>
+                    <td>Negociación</td>
+                    <td class="x-col"></td>
+                  </tr>
+                </tbody>
+                <thead>
+                  <tr>
+                    <th>Dimensión Interrelacional y de Servicio</th>
+                    <th class="text-center">Marca</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Orientación al cliente</td>
+                    <td class="x-col mark-x-cell">X</td>
+                  </tr>
+                  <tr>
+                    <td>Comunicación efectiva</td>
+                    <td class="x-col mark-x-cell">X</td>
+                  </tr>
+                  <tr>
+                    <td>Relaciones interpersonales</td>
+                    <td class="x-col"></td>
+                  </tr>
+                  <tr>
+                    <td>Trabajo en equipo</td>
+                    <td class="x-col mark-x-cell">X</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Columna 2 -->
+            <div class="comp-matrix-col">
+              <table class="comp-subtable">
+                <thead>
+                  <tr>
+                    <th>Dimensión Cognitiva</th>
+                    <th class="text-center" style="width: 54px;">Marca</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Pensamiento conceptual</td>
+                    <td class="x-col mark-x-cell">X</td>
+                  </tr>
+                  <tr>
+                    <td>Pensamiento funcional</td>
+                    <td class="x-col mark-x-cell">X</td>
+                  </tr>
+                  <tr>
+                    <td>Pensamiento operativo</td>
+                    <td class="x-col"></td>
+                  </tr>
+                </tbody>
+                <thead>
+                  <tr>
+                    <th>Dimensión Motivacional y Ética</th>
+                    <th class="text-center">Marca</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Proactividad</td>
+                    <td class="x-col mark-x-cell">X</td>
+                  </tr>
+                  <tr>
+                    <td>Integridad personal</td>
+                    <td class="x-col mark-x-cell">X</td>
+                  </tr>
+                  <tr>
+                    <td>Responsabilidad</td>
+                    <td class="x-col mark-x-cell">X</td>
+                  </tr>
+                  <tr>
+                    <td>Autoaprendizaje</td>
+                    <td class="x-col mark-x-cell">X</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ======================================================================
+           SECCIÓN 3: DESARROLLO DE LOS OTROS DOS (02) PERFILES CON FORMATOS PROPIOS
+           ====================================================================== -->
+      <section id="seccion-3" class="section-block">
+        <div class="section-banner">
+          <div class="section-numeral">03</div>
+          <div class="section-title-wrap">
+            <div class="section-overline">Sección Tercera · Formatos Propios e Innovadores</div>
+            <h2>Desarrollo de los Otros Dos (02) Perfiles con Formatos Propios e Innovadores</h2>
+            <p>Estructuración técnica para ingeniería de software (Ficha Ágil Tecnológica) e infraestructura de datos (Matriz por Competencias y Criticidad).</p>
+          </div>
+        </div>
+
+        <!-- ====================================================================
+             PERFIL 2: DESARROLLADOR DE SOFTWARE FULL STACK (BENTO ROLE CANVAS)
+             ==================================================================== -->
+        <div id="perfil-fullstack" class="profile-innovation-card">
+          <div class="innovation-header-fullstack">
+            <div>
+              <span class="role-badge">Perfil 02 · Formato de Ficha Ágil Tecnológica (Tech Role Canvas)</span>
+              <h3>Desarrollador de Software Full Stack / Backend</h3>
+            </div>
+            <svg width="44" height="44" viewBox="0 0 48 48" stroke="#E06D53" stroke-width="1.5" fill="none" aria-hidden="true">
+              <polyline points="16 14 6 24 16 34"></polyline>
+              <polyline points="32 14 42 24 32 34"></polyline>
+              <line x1="27" y1="10" x2="21" y2="38"></line>
+            </svg>
+          </div>
+
+          <div class="bento-canvas-grid">
+            <!-- 1. Propósito del Rol -->
+            <div class="bento-cell b-col-7">
+              <div class="bento-label">
+                <svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><circle cx="12" cy="12" r="3"></circle></svg>
+                <span>1. Propósito Operativo en el Equipo de Ingeniería</span>
+              </div>
+              <p style="font-size: 14.2px; color: var(--ink-black); margin-bottom: 12px; line-height: 1.6;">
+                Diseñar, codificar, integrar y desplegar aplicaciones web multicapa y servicios de backend transaccionales, traduciendo la arquitectura lógica y las historias de usuario en software seguro, mantenible y de alto rendimiento.
+              </p>
+              <div style="font-size: 12.5px; background-color: var(--bg-stone); border: 1px solid var(--rule-medium); padding: 10px 14px; color: var(--ink-charcoal);">
+                <strong>Adscripción:</strong> Equipo de Desarrollo de Software &nbsp;·&nbsp; <strong>Metodología:</strong> Marco Ágil Scrum e Integración Continua
+              </div>
+            </div>
+
+            <!-- 2. Insignias de Stack Tecnológico -->
+            <div class="bento-cell cell-tinted b-col-5">
+              <div class="bento-label">
+                <svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+                <span>2. Stack Tecnológico (Insignias Técnicas)</span>
+              </div>
+              <div class="tech-stack-cluster">
+                <span class="stack-chip">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+                  Java (Spring Boot / Jakarta EE)
+                </span>
+                <span class="stack-chip">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18"></rect><line x1="9" y1="9" x2="15" y2="15"></line><line x1="15" y1="9" x2="9" y2="15"></line></svg>
+                  C# (.NET Core / Web API)
+                </span>
+                <span class="stack-chip">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="4" width="20" height="16"></rect><line x1="2" y1="9" x2="22" y2="9"></line></svg>
+                  HTML5 / CSS3 / JavaScript
+                </span>
+                <span class="stack-chip">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="6" rx="8" ry="3"></ellipse><path d="M4 6v12c0 1.66 3.58 3 8 3s8-1.34 8-3V6"></path></svg>
+                  SQL (SQL Server / PostgreSQL)
+                </span>
+                <span class="stack-chip">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="6" r="3"></circle><circle cx="18" cy="18" r="3"></circle><path d="M6 9v12"></path><path d="M6 15h9a3 3 0 0 1 3 3"></path></svg>
+                  Git (GitHub / GitLab)
+                </span>
+              </div>
+            </div>
+
+            <!-- 3. Responsabilidades Clave -->
+            <div class="bento-cell b-col-6">
+              <div class="bento-label">
+                <svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6v20h12V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+                <span>3. Responsabilidades Clave de Desarrollo</span>
+              </div>
+              <ul class="editorial-list">
+                <li><strong>Arquitectura Backend:</strong> Programar lógica de negocio, microservicios y APIs RESTful con <strong>Java</strong> y <strong>C#</strong> aplicando principios SOLID.</li>
+                <li><strong>Interfaces Frontend:</strong> Construir vistas web semánticas, responsivas y accesibles empleando <strong>HTML5, CSS3 y JavaScript</strong> moderno.</li>
+                <li><strong>Persistencia Relacional:</strong> Desarrollar consultas <strong>SQL</strong> optimizadas, transacciones, vistas e integración mediante frameworks ORM.</li>
+                <li><strong>Control de Versiones:</strong> Administrar ramas de código, fusiones (<em>merge requests</em>) y revisiones de pares usando <strong>Git</strong>.</li>
+                <li><strong>Seguridad Aplicativa:</strong> Implementar autenticación segura (JWT/OAuth) y mitigar riesgos del estándar OWASP Top 10.</li>
+              </ul>
+            </div>
+
+            <!-- 4. Entregables -->
+            <div class="bento-cell b-col-6">
+              <div class="bento-label">
+                <svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16"></rect><line x1="7" y1="9" x2="17" y2="9"></line><line x1="7" y1="13" x2="14" y2="13"></line></svg>
+                <span>4. Entregables Verificables del Puesto</span>
+              </div>
+              <ul class="editorial-list">
+                <li><strong>Módulos de Software en Producción:</strong> Código fuente limpio, compilado y sincronizado en el repositorio institucional Git.</li>
+                <li><strong>Especificación de APIs:</strong> Contratos de servicios REST documentados bajo estándar OpenAPI / Swagger.</li>
+                <li><strong>Scripts de Base de Datos:</strong> Paquetes DDL y DML versionados para creación y migración de esquemas SQL.</li>
+                <li><strong>Suite de Pruebas Unitarias:</strong> Pruebas automatizadas ejecutadas sobre las reglas críticas del negocio.</li>
+                <li><strong>Instructivo de Despliegue:</strong> Guía técnica de configuración de entorno, variables y compilación para pase a producción.</li>
+              </ul>
+            </div>
+
+            <!-- 5. Indicadores de Desempeño (KPIs) -->
+            <div class="bento-cell cell-tinted b-col-7">
+              <div class="bento-label">
+                <svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+                <span>5. Indicadores de Desempeño (KPIs de Ingeniería)</span>
+              </div>
+              <div class="kpi-cards-grid">
+                <div class="kpi-card">
+                  <div class="kpi-card-top">
+                    <span class="kpi-value">&ge; 90%</span>
+                    <span class="kpi-tag">Entregas por Sprint</span>
+                  </div>
+                  <div class="kpi-meter"><div class="kpi-meter-fill" style="width: 90%;"></div></div>
+                  <div class="kpi-caption">Cumplimiento de historias de usuario comprometidas en cada iteración.</div>
+                </div>
+                <div class="kpi-card">
+                  <div class="kpi-card-top">
+                    <span class="kpi-value">&ge; 80%</span>
+                    <span class="kpi-tag">Cobertura de Pruebas</span>
+                  </div>
+                  <div class="kpi-meter"><div class="kpi-meter-fill" style="width: 80%;"></div></div>
+                  <div class="kpi-caption">Porcentaje de lógica de negocio cubierta por pruebas unitarias.</div>
+                </div>
+                <div class="kpi-card">
+                  <div class="kpi-card-top">
+                    <span class="kpi-value">&lt; 5%</span>
+                    <span class="kpi-tag">Estabilidad en Pase</span>
+                  </div>
+                  <div class="kpi-meter"><div class="kpi-meter-fill" style="width: 95%;"></div></div>
+                  <div class="kpi-caption">Tasa máxima de defectos o regresiones tras el despliegue a producción.</div>
+                </div>
+                <div class="kpi-card">
+                  <div class="kpi-card-top">
+                    <span class="kpi-value">0 Críticas</span>
+                    <span class="kpi-tag">Seguridad de Código</span>
+                  </div>
+                  <div class="kpi-meter"><div class="kpi-meter-fill" style="width: 100%;"></div></div>
+                  <div class="kpi-caption">Cero vulnerabilidades de severidad alta en auditoría de código estático.</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 6. Requisitos Técnicos -->
+            <div class="bento-cell b-col-5">
+              <div class="bento-label">
+                <svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                <span>6. Requisitos Exigidos</span>
+              </div>
+              <ul class="editorial-list">
+                <li><strong>Formación:</strong> Titulado Técnico o Universitario en <em>Desarrollo de Sistemas de Información</em>, Ingeniería de Sistemas o Computación.</li>
+                <li><strong>Experiencia:</strong> Mínimo 2 años en construcción de aplicaciones web o servicios empresariales con Java, C# y SQL.</li>
+                <li><strong>Especialización:</strong> Desarrollo de Software Empresarial, Arquitectura de Aplicaciones Web o Metodologías Ágiles.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- ====================================================================
+             PERFIL 3: ADMINISTRADOR DE BASES DE DATOS - DBA (MATRIZ DE CRITICIDAD)
+             ==================================================================== -->
+        <div id="perfil-dba" class="profile-innovation-card">
+          <div class="innovation-header-dba">
+            <div>
+              <span class="role-badge">Perfil 03 · Formato de Matriz por Competencias y Niveles de Criticidad</span>
+              <h3>Administrador de Bases de Datos (DBA)</h3>
+            </div>
+            <svg width="44" height="44" viewBox="0 0 48 48" stroke="#A7C4B5" stroke-width="1.5" fill="none" aria-hidden="true">
+              <ellipse cx="24" cy="12" rx="16" ry="6"></ellipse>
+              <path d="M8 12v24c0 3.31 7.16 6 16 6s16-2.69 16-6V12"></path>
+              <path d="M8 24c0 3.31 7.16 6 16 6s16-2.69 16-6"></path>
+            </svg>
+          </div>
+
+          <div class="dba-content-pad">
+            <!-- Objetivo Operacional y Entorno Tecnológico -->
+            <div class="dba-overview-grid">
+              <div class="dba-panel">
+                <h4>
+                  <svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                  <span>1. Objetivo Operacional del Cargo</span>
+                </h4>
+                <p>
+                  Asegurar la continuidad operativa ininterrumpida, integridad transaccional, seguridad perimetral y rendimiento óptimo de los motores de bases de datos institucionales, ejecutando estrategias preventivas de respaldo, recuperación ante desastres (DRP) y gobierno de datos.
+                </p>
+              </div>
+              <div class="dba-panel">
+                <h4>
+                  <svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="3" width="20" height="7"></rect><rect x="2" y="14" width="20" height="7"></rect><line x1="6" y1="6.5" x2="6.01" y2="6.5"></line><line x1="6" y1="17.5" x2="6.01" y2="17.5"></line></svg>
+                  <span>2. Entorno Tecnológico Administrado</span>
+                </h4>
+                <p>
+                  <strong>Motores RDBMS:</strong> Microsoft SQL Server, PostgreSQL, MySQL / MariaDB y Oracle Database.<br>
+                  <strong>Plataformas y Herramientas:</strong> Servidores Linux y Windows Server, herramientas ETL (SSIS), utilitarios de respaldo (RMAN / pg_dump), auditoría TDE y monitoreo de rendimiento.
+                </p>
+              </div>
+            </div>
+
+            <!-- Matriz de Responsabilidades Críticas -->
+            <div class="mpp-sub-strip">3. Matriz de Responsabilidades Críticas y Acuerdos de Nivel de Servicio (SLA)</div>
+            <div class="table-scroll" style="margin-bottom: 22px;">
+              <table class="editorial-table">
+                <thead>
+                  <tr>
+                    <th style="width: 19%;">Dominio de Competencia</th>
+                    <th style="width: 15%;" class="text-center">Nivel de Criticidad</th>
+                    <th style="width: 34%;">Responsabilidades Operativas Críticas</th>
+                    <th style="width: 18%;">Mecanismos Técnicos</th>
+                    <th style="width: 14%;">Métrica / SLA</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>1. Copias de Respaldo y Recuperación (Backups)</strong></td>
+                    <td class="text-center"><span class="crit-badge crit-1">Crítica · Nivel 1</span></td>
+                    <td>
+                      Planificar, automatizar y auditar políticas de respaldos completos, diferenciales y de logs transaccionales. Ejecutar simulacros periódicos de restauración para garantizar la recuperación ante contingencias.
+                    </td>
+                    <td>Jobs programados, cifrado de respaldos y replicación en almacenamiento externo.</td>
+                    <td class="num-cell">RPO &lt; 15 min<br>RTO &lt; 1 hora</td>
+                  </tr>
+                  <tr>
+                    <td><strong>2. Seguridad y Control de Accesos</strong></td>
+                    <td class="text-center"><span class="crit-badge crit-1">Crítica · Nivel 1</span></td>
+                    <td>
+                      Aplicar el principio de mínimo privilegio, gestión de roles, cifrado transparente de datos (TDE), enmascaramiento de información sensible y auditoría de transacciones críticas.
+                    </td>
+                    <td>Políticas DCL (GRANT/REVOKE), cifrado SSL/TLS y trazabilidad de auditoría.</td>
+                    <td class="num-cell">0 Brechas de seguridad</td>
+                  </tr>
+                  <tr>
+                    <td><strong>3. Optimización de Consultas (Tuning SQL)</strong></td>
+                    <td class="text-center"><span class="crit-badge crit-2">Alta · Nivel 2</span></td>
+                    <td>
+                      Analizar planes de ejecución de consultas pesadas, resolver bloqueos transaccionales (<em>deadlocks</em>), desfragmentar índices y actualizar estadísticas del motor relacional.
+                    </td>
+                    <td>Execution Plans, índices Clustered / Non-Clustered y particionamiento de tablas.</td>
+                    <td class="num-cell">Respuesta &lt; 200 ms</td>
+                  </tr>
+                  <tr>
+                    <td><strong>4. Migración de Datos y Procesos ETL</strong></td>
+                    <td class="text-center"><span class="crit-badge crit-2">Alta · Nivel 2</span></td>
+                    <td>
+                      Diseñar y ejecutar procesos de extracción, transformación y carga (ETL), migración controlada entre versiones o motores de bases de datos y conciliación de integridad post-migración.
+                    </td>
+                    <td>Paquetes SSIS, scripts de validación y carga masiva transaccional.</td>
+                    <td class="num-cell">100% Integridad referencial</td>
+                  </tr>
+                  <tr>
+                    <td><strong>5. Alta Disponibilidad y Capacidad</strong></td>
+                    <td class="text-center"><span class="crit-badge crit-3">Media-Alta · Nivel 3</span></td>
+                    <td>
+                      Supervisar el crecimiento de almacenamiento (<em>datafiles / tablespaces</em>), configurar esquemas de replicación o clústeres de conmutación y aplicar parches de seguridad.
+                    </td>
+                    <td>Clústeres de alta disponibilidad, replicación sincrónica y alertas tempranas.</td>
+                    <td class="num-cell">99.95% Uptime anual</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Perfil Técnico Requerido -->
+            <div class="mpp-sub-strip">4. Perfil Técnico Requerido para el Administrador de Bases de Datos</div>
+            <div class="table-scroll">
+              <table class="mpp-table">
+                <tbody>
+                  <tr>
+                    <td class="key-col">Formación Académica:</td>
+                    <td class="val-col">Titulado Profesional Técnico o Universitario en <strong>Desarrollo de Sistemas de Información</strong>, Ingeniería de Sistemas, Computación e Informática o carreras afines.</td>
+                  </tr>
+                  <tr>
+                    <td class="key-col">Conocimientos Técnicos:</td>
+                    <td class="val-col">Dominio avanzado de SQL estándar, T-SQL y PL/pgSQL; arquitectura interna de motores relacionales (memoria, transacciones ACID, control de concurrencia); administración de servidores Linux/Windows y scripting de automatización.</td>
+                  </tr>
+                  <tr>
+                    <td class="key-col">Especialización:</td>
+                    <td class="val-col">Programas de especialización o certificaciones en Administración de Bases de Datos (SQL Server, PostgreSQL u Oracle), Seguridad de la Información o Gestión de Servicios TI (ITIL).</td>
+                  </tr>
+                  <tr>
+                    <td class="key-col">Experiencia Requerida:</td>
+                    <td class="val-col">Mínimo 3 años de experiencia general en el área de TI y 2 años de experiencia específica en administración de motores de bases de datos relacionales o arquitectura de datos.</td>
+                  </tr>
+                  <tr>
+                    <td class="key-col">Competencias Personales:</td>
+                    <td class="val-col">Rigor analítico, ética profesional en el resguardo de información confidencial, tolerancia a la presión operativa y orden metodológico.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- PIE DE PÁGINA (<footer>) -->
+    <footer class="main-footer">
+      <div class="footer-colophon-author">
+        <div class="f-label">Registro de Autoría Académica</div>
+        <div class="f-author">Autor: AUDREY MELODY BARTRA CAUTIN</div>
+        <div class="f-career">Carrera: Desarrollo de Sistemas de Información</div>
+      </div>
+      <div class="footer-colophon-meta">
+        <div>Compendio Técnico de Gestión de Recursos Humanos y Tecnologías de la Información</div>
+        <div>Formato Oficial MPP · Ficha Ágil Full Stack · Matriz de Criticidad DBA</div>
+      </div>
+    </footer>
+
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var printButton = document.getElementById('btnPrintDoc');
+      if (printButton) {
+        printButton.addEventListener('click', function () {
+          window.print();
+        });
+      }
+
+      var navLinks = document.querySelectorAll('#sidebarNav a');
+      var sections = document.querySelectorAll('section[id]');
+
+      function updateActiveNav() {
+        var scrollPos = window.scrollY + 140;
+        var currentId = 'seccion-1';
+        for (var i = 0; i < sections.length; i++) {
+          var sec = sections[i];
+          if (sec.offsetTop <= scrollPos) {
+            currentId = sec.getAttribute('id');
+          }
+        }
+        for (var j = 0; j < navLinks.length; j++) {
+          var link = navLinks[j];
+          if (link.getAttribute('href') === '#' + currentId) {
+            link.classList.add('active');
+          } else {
+            link.classList.remove('active');
+          }
+        }
+      }
+
+      window.addEventListener('scroll', updateActiveNav, { passive: true });
+    });
+  </script>
+</body>
+</html>
